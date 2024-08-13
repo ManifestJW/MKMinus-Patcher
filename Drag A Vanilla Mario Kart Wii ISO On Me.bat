@@ -1,0 +1,148 @@
+@echo off
+REM Check if a file was dropped onto the script
+if "%~1"=="" (
+    echo Please drag and drop an ISO file onto this script.
+    pause
+    exit /b
+)
+
+REM Define the path to WIT Tools and the destination folder
+set WIT_PATH="%~dp0Prereqs\wit\wit.exe"
+set DEST_FOLDER=%~dp0%~n1_extracted
+set OUT_FOLDER=%~dp0%out
+set BINARY_FOLDER=%~dp0~n1_extracted\DATA\files\Binaries
+
+REM Check if the destination folder exists
+if exist "%DEST_FOLDER%" (
+    echo Folder "%DEST_FOLDER%" already exists.
+    echo Overwriting existing folder...
+    rmdir /s /q "%DEST_FOLDER%" || (
+        echo Error occurred while trying to delete the existing folder.
+        pause
+        goto :EOF
+    )
+)
+
+REM Extract the ISO and handle errors
+%WIT_PATH% extract "%~1" --dest "%DEST_FOLDER%" || (
+    echo Error occurred during extraction.
+    pause
+    goto :EOF
+)
+
+REM Notify the user that extraction is complete
+echo Extraction complete! Files are located in "%DEST_FOLDER%"
+
+:TEST
+
+REM Patch main.dol (assuming main.dol exists in the extracted folder)
+%WIT_PATH% dolpatch "%DEST_FOLDER%\DATA\sys\main.dol" xml="%~dp0Prereqs\Patches.xml" --source "%~dp0Patches\Binaries"
+
+REM Notify the user that main.dol has been patched
+echo main.dol patched!
+
+REM Copy Files
+if exist "%BINARY_FOLDER%" (
+	echo Binary folder already exists!
+) else (
+	mkdir "%DEST_FOLDER%\DATA\files\Binaries" || (
+		echo Error occurred making the Binary Directory.
+		pause
+		goto :EOF
+	)
+)
+
+XCOPY /y "%~dp0Patches\Binaries" "%DEST_FOLDER%\DATA\files\Binaries" || (
+	echo Error occurred copying files.
+    pause
+    goto :EOF
+)
+
+XCOPY /y "%~dp0Patches\rel\E\StaticR.rel" "%DEST_FOLDER%\DATA\files\rel\StaticR.rel" || (
+	echo Error occurred copying files.
+    pause
+    goto :EOF
+)
+
+XCOPY /y "%~dp0Patches\Tracks" "%DEST_FOLDER%\DATA\files\Race\Course" || (
+	echo Error occurred copying files.
+    pause
+    goto :EOF
+)
+
+XCOPY /y "%~dp0Patches\Assets" "%DEST_FOLDER%\DATA\files" || (
+	echo Error occurred copying files.
+    pause
+    goto :EOF
+)
+
+XCOPY /y "%~dp0Patches\strm" "%DEST_FOLDER%\DATA\files\sound\strm" || (
+	echo Error occurred copying files.
+    pause
+    goto :EOF
+)
+
+XCOPY /y "%~dp0Patches\UI" "%DEST_FOLDER%\DATA\files\Scene\UI" || (
+	echo Error occurred copying files.
+    pause
+    goto :EOF
+)
+
+XCOPY /y "%~dp0Patches\Minus\Race" "%DEST_FOLDER%\DATA\files\Race" || (
+	echo Error occurred copying files.
+    pause
+    goto :EOF
+)
+
+XCOPY /y "%~dp0Patches\Minus\sound" "%DEST_FOLDER%\DATA\files\sound" || (
+	echo Error occurred copying files.
+    pause
+    goto :EOF
+)
+
+XCOPY /y "%~dp0Patches\Custom Music" "%DEST_FOLDER%\DATA\files\sound\strm" || (
+	echo Error occurred copying files.
+    pause
+    goto :EOF
+)
+
+XCOPY /y "%~dp0Patches\Character Mods\Race Kart" "%DEST_FOLDER%\DATA\files\Race\Kart" || (
+	echo Error occurred copying files.
+    pause
+    goto :EOF
+)
+
+XCOPY /y "%~dp0Patches\Character Mods\Scene Kart" "%DEST_FOLDER%\DATA\files\Scene\Model\Kart" || (
+	echo Error occurred copying files.
+    pause
+    goto :EOF
+)
+
+
+if exist "%OUT_FOLDER%" (
+	echo out folder already exists!
+) else (
+	mkdir "%~dp0out" || (
+		echo Error occurred making the Binary Directory.
+		pause
+		goto :EOF
+		goto :EOF
+	)
+)
+
+REM Rebuild ISO
+%WIT_PATH% copy "%DEST_FOLDER%\DATA" --dest "%~dp0out\MKMinus.iso"
+
+REM Remove Extracted Files
+rmdir /s /q "%DEST_FOLDER%" || (
+        echo Error occurred while trying to delete the existing folder.
+        pause
+        goto :EOF
+)
+
+
+echo Patching Complete! You May Now Close This Window!
+
+pause
+
+:EOF
