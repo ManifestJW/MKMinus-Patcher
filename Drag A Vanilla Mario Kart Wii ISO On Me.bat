@@ -1,5 +1,16 @@
 @echo off
 REM Check if a file was dropped onto the script
+
+echo Running Update.bat...
+call "%~dp0%Update.bat" || (
+	echo Error occurred Updating.
+	pause
+	goto :EOF
+)
+
+echo Update.bat has finished.
+echo Continuing with script1.bat...
+
 if "%~1"=="" (
     echo Please drag and drop an ISO file onto this script.
     pause
