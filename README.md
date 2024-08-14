@@ -1,4 +1,6 @@
 # MKMinus-Patcher
+Install Git and clone the repo
+
 Patches Mario Kart Wii with my mod Mario Kart Minus
 
 Drag And Drop A **Vanilla** Mario Kart Wii iso onto the .bat file. Output ISO will appear in the out folder
