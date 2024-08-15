@@ -7,4 +7,7 @@
 <memory offset="0x8000A350" value="4BFF9CB0" original="4e800020" /> <!--RMCJ REL-->		
 <memory offset="0x80242a0c" value="4BDC15f4" original="4e800020" /> <!--RMCK DOL-->
 <memory offset="0x8000A4FC" value="4BFF9B04" original="4e800020" /> <!--RMCK REL-->
+<memory offset="0x808B1400" value="0004010E"/>
+<memory offset="0x808B1408" value="00040000"/>
+<memory offset="0x808B1278" value="001B0000"/>
 <memory valuefile="../../Patches/Binaries/Loader.pul" offset="0x80004000"/>

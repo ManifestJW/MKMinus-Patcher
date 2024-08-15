@@ -19,6 +19,7 @@ if "%~1"=="" (
 
 REM Define the path to WIT Tools and the destination folder
 set WIT_PATH="%~dp0Prereqs\wit\wit.exe"
+set TRT_PATH="%~dp0Prereqs\szs\wstrt.exe"
 set DEST_FOLDER=%~dp0%~n1_extracted
 set OUT_FOLDER=%~dp0%out
 set BINARY_FOLDER=%~dp0~n1_extracted\DATA\files\Binaries
@@ -129,6 +130,9 @@ XCOPY /y "%~dp0Patches\Character Mods\Scene Kart" "%DEST_FOLDER%\DATA\files\Scen
     goto :EOF
 )
 
+%TRT_PATH% patch "%DEST_FOLDER%\DATA\sys\main.dol" --add-section "%~dp0Patches\codes\RMCE01.gct"
+
+echo main.dol patched with cheat codes!
 
 if exist "%OUT_FOLDER%" (
 	echo out folder already exists!
@@ -139,6 +143,17 @@ if exist "%OUT_FOLDER%" (
 		goto :EOF
 		goto :EOF
 	)
+)
+
+
+if exist "%OUT_FOLDER%\MKMinus.iso" (
+	echo iso already exists!
+	
+	del "%OUT_FOLDER%\MKMinus.iso" || (
+        echo Error occurred while trying to delete the existing folder.
+        pause
+        goto :EOF
+    )
 )
 
 REM Rebuild ISO
