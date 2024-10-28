@@ -8,43 +8,6 @@
 				</choice>
 			</option>
 		</section>
-		<section name="Ocarina">
-			<option name="Ocarina Handler">
-				<choice name="VI Hook">
-					<patch id="ocarinabase_vi"/>
-					<patch id="ocarinabase"/>
-				</choice>
-				<choice name="KPAD Hook">
-					<patch id="ocarinabase_kpad"/>
-					<patch id="ocarinabase"/>
-				</choice>
-				<choice name="Joypad Hook">
-					<patch id="ocarinabase_joypad"/>
-					<patch id="ocarinabase"/>
-				</choice>
-				<choice name="GXDraw Hook">
-					<patch id="ocarinabase_gxdraw"/>
-					<patch id="ocarinabase"/>
-				</choice>
-				<choice name="GXFlush Hook">
-					<patch id="ocarinabase_gxflush"/>
-					<patch id="ocarinabase"/>
-				</choice>
-				<choice name="OSSleep Hook">
-					<patch id="ocarinabase_ossleep"/>
-					<patch id="ocarinabase"/>
-				</choice>
-				<choice name="AxNextFrame Hook">
-					<patch id="ocarinabase_axnextframe"/>
-					<patch id="ocarinabase"/>
-				</choice>
-			</option>
-			<option name="ocarina_codes">
-				<choice name="Enabled">
-					<patch id="ocarinacodes"/>
-				</choice>
-			</option>
-		</section>
 	</options>	
 	<patch id="MKMinusLoadPack">
     		<memory offset="0x80005EFC" value="000002EF"/>
@@ -101,38 +64,12 @@
                 <file disc="/Scene/UI/Race_M.szs" external="/MKMinus/UI/Race_U.szs" create="true" />
                 <file disc="/Scene/UI/Race_Q.szs" external="/MKMinus/UI/Race_U.szs" create="true" />
                 <file disc="/Scene/UI/Race_U.szs" external="/MKMinus/UI/Race_U.szs" create="true" />
-	</patch>
-	<patch id="ocarinabase_vi">
-		<memory ocarina="true" value="7CE33B783887003438A7003838C7004C" offset="0x800018A8"/>
-	</patch>
-	<patch id="ocarinabase_kpad">
-		<memory ocarina="true" value="9A3F005E38AE0080389FFFFC7E0903A6" offset="0x800018A8"/>
-		<!--  kpadoldhooks  -->
-		<memory ocarina="true" value="801D0060901E0060801D0064901E0064801D0068901E0068" offset="0x800018A8"/>
-	</patch>
-	<patch id="ocarinabase_joypad">
-		<memory ocarina="true" value="3AB500013A73000C2C1500043B18000C" offset="0x800018A8"/>
-	</patch>
-	<patch id="ocarinabase_gxdraw">
-		<memory ocarina="true" value="3CA0CC01380000613C80450098058000" offset="0x800018A8"/>
-	</patch>
-	<patch id="ocarinabase_gxflush">
-		<memory ocarina="true" value="90010014800305FC2C00000041820008" offset="0x800018A8"/>
-	</patch>
-	<patch id="ocarinabase_ossleep">
-		<memory ocarina="true" value="90A402E0806502E4908502E42C030000" offset="0x800018A8"/>
-	</patch>
-	<patch id="ocarinabase_axnextframe">
-		<memory ocarina="true" value="3800000E7FE3FB78B005000038800080" offset="0x800018A8"/>
-	</patch>
-	<patch id="ocarinabase">
-		<memory valuefile="codehandler.bin" offset="0x80001800"/>
-	</patch>
-	<patch id="ocarinacodes">
-		<memory offset="0x00001CDE" value="8000"/>
-		<memory offset="0x00001CE2" value="28B8"/>
-		<memory offset="0x00001F5A" value="8000"/>
-		<memory offset="0x00001F5E" value="28B8"/>
-		<memory valuefile="/codes/{$__gameid}{$__region}{$__maker}.gct" offset="0x800028B8"/>
+				<memory ocarina="true" value="7CE33B783887003438A7003838C7004C" offset="0x800018A8"/>
+				<memory valuefile="codehandler.bin" offset="0x80001800"/>
+				<memory offset="0x00001CDE" value="8000"/>
+				<memory offset="0x00001CE2" value="28B8"/>
+				<memory offset="0x00001F5A" value="8000"/>
+				<memory offset="0x00001F5E" value="28B8"/>
+				<memory valuefile="/codes/{$__gameid}{$__region}{$__maker}.gct" offset="0x800028B8"/>
 	</patch>
 </wiidisc>
