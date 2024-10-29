@@ -29,7 +29,7 @@
 		<folder external="/MKMinus/Character Mods" disc="/Race/Kart" create="true" />
 		<folder external="/MKMinus/Custom Music" disc="/sound/strm" create="true" />
                 <folder external="/MKMinus/strm" disc="/sound/strm" create="true"/>
-                <file disc="/Scene/Model/Kart/bds-allkart.szs" external="/MKMinus/Character Mods/Scene Kart/bds-allkart.szs" create="true" />
+                <folder external="/MKMinus/Scene Kart" disc="/Scene/Model/Kart" create="true" />
 				<file disc="/Race/Common.szs" external="/MKMinus/Minus/Common.szs" create="true" />
 				<file disc="/sound/revo_kart.brsar" external="/MKMinus/Minus/revo_kart.brsar" create="true" />
 				<file disc="/Scene/UI/Channel.szs" external="/MKMinus/UI/Channel.szs" create="true" />
