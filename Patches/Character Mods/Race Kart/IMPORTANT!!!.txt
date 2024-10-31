@@ -1,0 +1,8 @@
+Welcome to the new update: Celebi 1.3.5; The Multiplayer/Battle Update!!
+
+NOTE: None of these files have been fully tested, but they should theoretically work! If you notice any problems with the update, comment them on my GameBanana project at:
+
+https://gamebanana.com/mods/502785
+
+
+Thank you for downloading this update! For the complete Changelog and Overview, you can find them in the /Celebi folder as "Changelog.txt" and "Please Read!!.txt"
