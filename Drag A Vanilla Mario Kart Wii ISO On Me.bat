@@ -47,128 +47,254 @@ echo Extraction complete! Files are located in "%DEST_FOLDER%"
 
 :TEST
 
-REM Patch main.dol (assuming main.dol exists in the extracted folder)
-%WIT_PATH% dolpatch "%DEST_FOLDER%\DATA\sys\main.dol" xml="%~dp0Prereqs\Patches.xml" --source "%~dp0Patches\Binaries"
+if exist "%DEST_FOLDER%\DATA" (
+	REM Patch main.dol (assuming main.dol exists in the extracted folder)
+	%WIT_PATH% dolpatch "%DEST_FOLDER%\DATA\sys\main.dol" xml="%~dp0Prereqs\Patches.xml" --source "%~dp0Patches\Binaries"
 
-REM Notify the user that main.dol has been patched
-echo main.dol patched!
+	REM Notify the user that main.dol has been patched
+	echo main.dol patched!
 
-REM Copy Files
-if exist "%BINARY_FOLDER%" (
-	echo Binary folder already exists!
-) else (
-	mkdir "%DEST_FOLDER%\DATA\files\Binaries" || (
-		echo Error occurred making the Binary Directory.
+	REM Copy Files
+	if exist "%BINARY_FOLDER%" (
+		echo Binary folder already exists!
+	) else (
+		mkdir "%DEST_FOLDER%\DATA\files\Binaries" || (
+			echo Error occurred making the Binary Directory.
+			pause
+			goto :EOF
+		)
+	)
+
+	XCOPY /y "%~dp0Patches\Binaries" "%DEST_FOLDER%\DATA\files\Binaries" || (
+		echo Error occurred copying files.
 		pause
 		goto :EOF
 	)
-)
 
-XCOPY /y "%~dp0Patches\Binaries" "%DEST_FOLDER%\DATA\files\Binaries" || (
-	echo Error occurred copying files.
-    pause
-    goto :EOF
-)
-
-XCOPY /y "%~dp0Patches\rel\E\StaticR.rel" "%DEST_FOLDER%\DATA\files\rel\StaticR.rel" || (
-	echo Error occurred copying files.
-    pause
-    goto :EOF
-)
-
-XCOPY /y "%~dp0Patches\Tracks" "%DEST_FOLDER%\DATA\files\Race\Course" || (
-	echo Error occurred copying files.
-    pause
-    goto :EOF
-)
-
-XCOPY /y "%~dp0Patches\Assets" "%DEST_FOLDER%\DATA\files" || (
-	echo Error occurred copying files.
-    pause
-    goto :EOF
-)
-
-XCOPY /y "%~dp0Patches\strm" "%DEST_FOLDER%\DATA\files\sound\strm" || (
-	echo Error occurred copying files.
-    pause
-    goto :EOF
-)
-
-XCOPY /y "%~dp0Patches\UI" "%DEST_FOLDER%\DATA\files\Scene\UI" || (
-	echo Error occurred copying files.
-    pause
-    goto :EOF
-)
-
-XCOPY /y "%~dp0Patches\Minus\Race" "%DEST_FOLDER%\DATA\files\Race" || (
-	echo Error occurred copying files.
-    pause
-    goto :EOF
-)
-
-XCOPY /y "%~dp0Patches\Minus\sound" "%DEST_FOLDER%\DATA\files\sound" || (
-	echo Error occurred copying files.
-    pause
-    goto :EOF
-)
-
-XCOPY /y "%~dp0Patches\Custom Music" "%DEST_FOLDER%\DATA\files\sound\strm" || (
-	echo Error occurred copying files.
-    pause
-    goto :EOF
-)
-
-XCOPY /y "%~dp0Patches\Character Mods\Race Kart" "%DEST_FOLDER%\DATA\files\Race\Kart" || (
-	echo Error occurred copying files.
-    pause
-    goto :EOF
-)
-
-XCOPY /y "%~dp0Patches\Character Mods\Scene Kart" "%DEST_FOLDER%\DATA\files\Scene\Model\Kart" || (
-	echo Error occurred copying files.
-    pause
-    goto :EOF
-)
-
-%TRT_PATH% patch "%DEST_FOLDER%\DATA\sys\main.dol" --add-section "%~dp0Patches\codes\RMCE01.gct"
-
-echo main.dol patched with cheat codes!
-
-if exist "%OUT_FOLDER%" (
-	echo out folder already exists!
-) else (
-	mkdir "%~dp0out" || (
-		echo Error occurred making the Binary Directory.
+	XCOPY /y "%~dp0Patches\rel\E\StaticR.rel" "%DEST_FOLDER%\DATA\files\rel\StaticR.rel" || (
+		echo Error occurred copying files.
 		pause
 		goto :EOF
+	)
+
+	XCOPY /y "%~dp0Patches\Tracks" "%DEST_FOLDER%\DATA\files\Race\Course" || (
+		echo Error occurred copying files.
+		pause
 		goto :EOF
 	)
+
+	XCOPY /y "%~dp0Patches\Assets" "%DEST_FOLDER%\DATA\files" || (
+		echo Error occurred copying files.
+		pause
+		goto :EOF
+	)
+
+	XCOPY /y "%~dp0Patches\strm" "%DEST_FOLDER%\DATA\files\sound\strm" || (
+		echo Error occurred copying files.
+		pause
+		goto :EOF
+	)
+
+	XCOPY /y "%~dp0Patches\UI" "%DEST_FOLDER%\DATA\files\Scene\UI" || (
+		echo Error occurred copying files.
+		pause
+		goto :EOF
+	)
+
+	XCOPY /y "%~dp0Patches\Minus\Race" "%DEST_FOLDER%\DATA\files\Race" || (
+		echo Error occurred copying files.
+		pause
+		goto :EOF
+	)
+
+	XCOPY /y "%~dp0Patches\Minus\sound" "%DEST_FOLDER%\DATA\files\sound" || (
+		echo Error occurred copying files.
+		pause
+		goto :EOF
+	)
+
+	XCOPY /y "%~dp0Patches\Custom Music" "%DEST_FOLDER%\DATA\files\sound\strm" || (
+		echo Error occurred copying files.
+		pause
+		goto :EOF
+	)
+
+	XCOPY /y "%~dp0Patches\Character Mods\Race Kart" "%DEST_FOLDER%\DATA\files\Race\Kart" || (
+		echo Error occurred copying files.
+		pause
+		goto :EOF
+	)
+
+	XCOPY /y "%~dp0Patches\Character Mods\Scene Kart" "%DEST_FOLDER%\DATA\files\Scene\Model\Kart" || (
+		echo Error occurred copying files.
+		pause
+		goto :EOF
+	)
+
+	%TRT_PATH% patch "%DEST_FOLDER%\DATA\sys\main.dol" --add-section "%~dp0Patches\codes\RMCE01.gct"
+
+	echo main.dol patched with cheat codes!
+
+	if exist "%OUT_FOLDER%" (
+		echo out folder already exists!
+	) else (
+		mkdir "%~dp0out" || (
+			echo Error occurred making the Binary Directory.
+			pause
+			goto :EOF
+			goto :EOF
+		)
+	)
+
+
+	if exist "%OUT_FOLDER%\MKMinus.iso" (
+		echo iso already exists!
+		
+		del "%OUT_FOLDER%\MKMinus.iso" || (
+			echo Error occurred while trying to delete the existing folder.
+			pause
+			goto :EOF
+		)
+	)
+
+	REM Rebuild ISO
+	%WIT_PATH% copy "%DEST_FOLDER%\DATA" --dest "%~dp0out\MKMinus.iso"
+
+	REM Remove Extracted Files
+	rmdir /s /q "%DEST_FOLDER%" || (
+			echo Error occurred while trying to delete the existing folder.
+			pause
+			goto :EOF
+	)
+
+
+	echo Patching Complete! You May Now Close This Window!
+
+	pause
+) else (
+	REM Patch main.dol (assuming main.dol exists in the extracted folder)
+	%WIT_PATH% dolpatch "%DEST_FOLDER%\sys\main.dol" xml="%~dp0Prereqs\Patches.xml" --source "%~dp0Patches\Binaries"
+
+	REM Notify the user that main.dol has been patched
+	echo main.dol patched!
+
+	REM Copy Files
+	if exist "%BINARY_FOLDER%" (
+		echo Binary folder already exists!
+	) else (
+		mkdir "%DEST_FOLDER%\files\Binaries" || (
+			echo Error occurred making the Binary Directory.
+			pause
+			goto :EOF
+		)
+	)
+
+	XCOPY /y "%~dp0Patches\Binaries" "%DEST_FOLDER%\files\Binaries" || (
+		echo Error occurred copying files.
+		pause
+		goto :EOF
+	)
+
+	XCOPY /y "%~dp0Patches\rel\E\StaticR.rel" "%DEST_FOLDER%\files\rel\StaticR.rel" || (
+		echo Error occurred copying files.
+		pause
+		goto :EOF
+	)
+
+	XCOPY /y "%~dp0Patches\Tracks" "%DEST_FOLDER%\files\Race\Course" || (
+		echo Error occurred copying files.
+		pause
+		goto :EOF
+	)
+
+	XCOPY /y "%~dp0Patches\Assets" "%DEST_FOLDER%\files" || (
+		echo Error occurred copying files.
+		pause
+		goto :EOF
+	)
+
+	XCOPY /y "%~dp0Patches\strm" "%DEST_FOLDER%\files\sound\strm" || (
+		echo Error occurred copying files.
+		pause
+		goto :EOF
+	)
+
+	XCOPY /y "%~dp0Patches\UI" "%DEST_FOLDER%\files\Scene\UI" || (
+		echo Error occurred copying files.
+		pause
+		goto :EOF
+	)
+
+	XCOPY /y "%~dp0Patches\Minus\Race" "%DEST_FOLDER%\files\Race" || (
+		echo Error occurred copying files.
+		pause
+		goto :EOF
+	)
+
+	XCOPY /y "%~dp0Patches\Minus\sound" "%DEST_FOLDER%\files\sound" || (
+		echo Error occurred copying files.
+		pause
+		goto :EOF
+	)
+
+	XCOPY /y "%~dp0Patches\Custom Music" "%DEST_FOLDER%\files\sound\strm" || (
+		echo Error occurred copying files.
+		pause
+		goto :EOF
+	)
+
+	XCOPY /y "%~dp0Patches\Character Mods\Race Kart" "%DEST_FOLDER%\files\Race\Kart" || (
+		echo Error occurred copying files.
+		pause
+		goto :EOF
+	)
+
+	XCOPY /y "%~dp0Patches\Character Mods\Scene Kart" "%DEST_FOLDER%\files\Scene\Model\Kart" || (
+		echo Error occurred copying files.
+		pause
+		goto :EOF
+	)
+
+	%TRT_PATH% patch "%DEST_FOLDER%\sys\main.dol" --add-section "%~dp0Patches\codes\RMCE01.gct"
+
+	echo main.dol patched with cheat codes!
+
+	if exist "%OUT_FOLDER%" (
+		echo out folder already exists!
+	) else (
+		mkdir "%~dp0out" || (
+			echo Error occurred making the Binary Directory.
+			pause
+			goto :EOF
+			goto :EOF
+		)
+	)
+
+
+	if exist "%OUT_FOLDER%\MKMinus.iso" (
+		echo iso already exists!
+		
+		del "%OUT_FOLDER%\MKMinus.iso" || (
+			echo Error occurred while trying to delete the existing folder.
+			pause
+			goto :EOF
+		)
+	)
+
+	REM Rebuild ISO
+	%WIT_PATH% copy "%DEST_FOLDER%" --dest "%~dp0out\MKMinus.iso"
+
+	REM Remove Extracted Files
+	rmdir /s /q "%DEST_FOLDER%" || (
+			echo Error occurred while trying to delete the existing folder.
+			pause
+			goto :EOF
+	)
+
+
+	echo Patching Complete! You May Now Close This Window!
+
+	pause
 )
-
-
-if exist "%OUT_FOLDER%\MKMinus.iso" (
-	echo iso already exists!
-	
-	del "%OUT_FOLDER%\MKMinus.iso" || (
-        echo Error occurred while trying to delete the existing folder.
-        pause
-        goto :EOF
-    )
-)
-
-REM Rebuild ISO
-%WIT_PATH% copy "%DEST_FOLDER%\DATA" --dest "%~dp0out\MKMinus.iso"
-
-REM Remove Extracted Files
-rmdir /s /q "%DEST_FOLDER%" || (
-        echo Error occurred while trying to delete the existing folder.
-        pause
-        goto :EOF
-)
-
-
-echo Patching Complete! You May Now Close This Window!
-
-pause
 
 :EOF
