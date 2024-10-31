@@ -28,44 +28,13 @@
 		<folder external="/MKMinus/Ghosts/Experts" disc="/Experts" create="true" />
 		<folder external="/MKMinus/Character Mods" disc="/Race/Kart" create="true" />
 		<folder external="/MKMinus/Custom Music" disc="/sound/strm" create="true" />
+		<folder external="/MKMinus/UI" disc="/Scene/UI" create="true" />
                 <folder external="/MKMinus/strm" disc="/sound/strm" create="true"/>
                 <folder external="/MKMinus/Scene Kart" disc="/Scene/Model/Kart" create="true" />
 				<folder external="/MKMinus/Demo" disc="/Demo" create="true" />
 				<folder external="/MKMinus/Model" disc="/Scene/Model" create="true" />
 				<file disc="/Race/Common.szs" external="/MKMinus/Minus/Common.szs" create="true" />
 				<file disc="/sound/revo_kart.brsar" external="/MKMinus/Minus/revo_kart.brsar" create="true" />
-				<file disc="/Scene/UI/Channel.szs" external="/MKMinus/UI/Channel.szs" create="true" />
-                <file disc="/Scene/UI/Globe.szs" external="/MKMinus/UI/Globe.szs" create="true" />
-                <file disc="/Scene/UI/MenuSingle.szs" external="/MKMinus/UI/MenuSingle.szs" create="true" />
-                <file disc="/Scene/UI/Race.szs" external="/MKMinus/UI/Race.szs" create="true" />
-                <file disc="/Scene/UI/Title.szs" external="/MKMinus/UI/Title.szs" create="true" />
-                <file disc="/Scene/UI/MenuMulti.szs" external="/MKMinus/UI/MenuMulti.szs" create="true" />
-                <file disc="/Scene/UI/Channel_R.szs" external="/MKMinus/UI/Channel.szs" create="true" />
-                <file disc="/Scene/UI/Globe_R.szs" external="/MKMinus/UI/Globe.szs" create="true" />
-                <file disc="/Scene/UI/MenuSingle_R.szs" external="/MKMinus/UI/MenuSingle.szs" create="true" />
-                <file disc="/Scene/UI/Race_R.szs" external="/MKMinus/UI/Race.szs" create="true" />
-                <file disc="/Scene/UI/Title_R.szs" external="/MKMinus/UI/Title.szs" create="true" />
-                <file disc="/Scene/UI/MenuMulti_R.szs" external="/MKMinus/UI/MenuMulti.szs" create="true" />
-                <file disc="/Scene/UI/Title_E.szs" external="/MKMinus/UI/Title_U.szs" create="true" />
-                <file disc="/Scene/UI/Title_F.szs" external="/MKMinus/UI/Title_U.szs" create="true" />
-                <file disc="/Scene/UI/Title_G.szs" external="/MKMinus/UI/Title_U.szs" create="true" />
-                <file disc="/Scene/UI/Title_I.szs" external="/MKMinus/UI/Title_U.szs" create="true" />
-                <file disc="/Scene/UI/Title_S.szs" external="/MKMinus/UI/Title_U.szs" create="true" />
-                <file disc="/Scene/UI/Title_J.szs" external="/MKMinus/UI/Title_U.szs" create="true" />
-                <file disc="/Scene/UI/Title_K.szs" external="/MKMinus/UI/Title_U.szs" create="true" />
-                <file disc="/Scene/UI/Title_M.szs" external="/MKMinus/UI/Title_U.szs" create="true" />
-                <file disc="/Scene/UI/Title_Q.szs" external="/MKMinus/UI/Title_U.szs" create="true" />
-                <file disc="/Scene/UI/Title_U.szs" external="/MKMinus/UI/Title_U.szs" create="true" />
-                <file disc="/Scene/UI/Race_E.szs" external="/MKMinus/UI/Race_U.szs" create="true" />
-                <file disc="/Scene/UI/Race_F.szs" external="/MKMinus/UI/Race_U.szs" create="true" />
-                <file disc="/Scene/UI/Race_G.szs" external="/MKMinus/UI/Race_U.szs" create="true" />
-                <file disc="/Scene/UI/Race_I.szs" external="/MKMinus/UI/Race_U.szs" create="true" />
-                <file disc="/Scene/UI/Race_S.szs" external="/MKMinus/UI/Race_U.szs" create="true" />
-                <file disc="/Scene/UI/Race_J.szs" external="/MKMinus/UI/Race_U.szs" create="true" />
-                <file disc="/Scene/UI/Race_K.szs" external="/MKMinus/UI/Race_U.szs" create="true" />
-                <file disc="/Scene/UI/Race_M.szs" external="/MKMinus/UI/Race_U.szs" create="true" />
-                <file disc="/Scene/UI/Race_Q.szs" external="/MKMinus/UI/Race_U.szs" create="true" />
-                <file disc="/Scene/UI/Race_U.szs" external="/MKMinus/UI/Race_U.szs" create="true" />
 				<memory ocarina="true" value="7CE33B783887003438A7003838C7004C" offset="0x800018A8"/>
 				<memory valuefile="codehandler.bin" offset="0x80001800"/>
 				<memory offset="0x00001CDE" value="8000"/>
