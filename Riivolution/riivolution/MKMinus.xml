@@ -30,6 +30,8 @@
 		<folder external="/MKMinus/Custom Music" disc="/sound/strm" create="true" />
                 <folder external="/MKMinus/strm" disc="/sound/strm" create="true"/>
                 <folder external="/MKMinus/Scene Kart" disc="/Scene/Model/Kart" create="true" />
+				<folder external="/MKMinus/Demo" disc="/Demo" create="true" />
+				<folder external="/MKMinus/Model" disc="/Scene/Model" create="true" />
 				<file disc="/Race/Common.szs" external="/MKMinus/Minus/Common.szs" create="true" />
 				<file disc="/sound/revo_kart.brsar" external="/MKMinus/Minus/revo_kart.brsar" create="true" />
 				<file disc="/Scene/UI/Channel.szs" external="/MKMinus/UI/Channel.szs" create="true" />

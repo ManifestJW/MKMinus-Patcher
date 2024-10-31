@@ -130,6 +130,18 @@ if exist "%DEST_FOLDER%\DATA" (
 		pause
 		goto :EOF
 	)
+	
+	XCOPY /y "%~dp0Patches\Character Mods\Model" "%DEST_FOLDER%\DATA\files\Scene\Model" || (
+		echo Error occurred copying files.
+		pause
+		goto :EOF
+	)
+	
+	XCOPY /y "%~dp0Patches\Demo" "%DEST_FOLDER%\DATA\files\Demo" || (
+		echo Error occurred copying files.
+		pause
+		goto :EOF
+	)
 
 	%TRT_PATH% patch "%DEST_FOLDER%\DATA\sys\main.dol" --add-section "%~dp0Patches\codes\RMCE01.gct"
 
@@ -250,6 +262,18 @@ if exist "%DEST_FOLDER%\DATA" (
 	)
 
 	XCOPY /y "%~dp0Patches\Character Mods\Scene Kart" "%DEST_FOLDER%\files\Scene\Model\Kart" || (
+		echo Error occurred copying files.
+		pause
+		goto :EOF
+	)
+	
+	XCOPY /y "%~dp0Patches\Character Mods\Model" "%DEST_FOLDER%\files\Scene\Model" || (
+		echo Error occurred copying files.
+		pause
+		goto :EOF
+	)
+	
+	XCOPY /y "%~dp0Patches\Demo" "%DEST_FOLDER%\files\Demo" || (
 		echo Error occurred copying files.
 		pause
 		goto :EOF
