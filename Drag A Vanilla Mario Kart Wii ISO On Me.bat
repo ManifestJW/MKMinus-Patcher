@@ -53,9 +53,32 @@ if exist "%DEST_FOLDER%\DATA" (
         pause
         goto :EOF
     )
+
+	for /f "delims=" %%D in ('dir "%DEST_FOLDER%\DATA"\.svn /ad /b /s 2^>nul') do (
+    	echo Found: %%D
+    	rd /s /q "%%D" && echo Deleted: %%D || echo Failed to delete: %%D
+	)
+
+	XCOPY /y /s "%DEST_FOLDER%\DATA" "%DEST_FOLDER%" || (
+		echo Error occurred copying files.
+		pause
+		goto :EOF
+	)
+
+	XCOPY /y /s /t /e "%DEST_FOLDER%\DATA" "%DEST_FOLDER%" || (
+		echo Error occurred copying files.
+		pause
+		goto :EOF
+	)
+
+	rmdir /s /q "%DEST_FOLDER%\DATA" || (
+        echo Error occurred while trying to delete the existing folder.
+        pause
+        goto :EOF
+    )
 	
 	REM Patch main.dol (assuming main.dol exists in the extracted folder)
-	%WIT_PATH% dolpatch "%DEST_FOLDER%\DATA\sys\main.dol" xml="%~dp0Prereqs\Patches.xml" --source "%~dp0Patches\Binaries"
+	%WIT_PATH% dolpatch "%DEST_FOLDER%\sys\main.dol" xml="%~dp0Prereqs\Patches.xml" --source "%~dp0Patches\Binaries"
 
 	REM Notify the user that main.dol has been patched
 	echo main.dol patched!
@@ -64,92 +87,92 @@ if exist "%DEST_FOLDER%\DATA" (
 	if exist "%BINARY_FOLDER%" (
 		echo Binary folder already exists!
 	) else (
-		mkdir "%DEST_FOLDER%\DATA\files\Binaries" || (
+		mkdir "%DEST_FOLDER%\files\Binaries" || (
 			echo Error occurred making the Binary Directory.
 			pause
 			goto :EOF
 		)
 	)
 
-	XCOPY /y "%~dp0Patches\Binaries" "%DEST_FOLDER%\DATA\files\Binaries" || (
+	XCOPY /y "%~dp0Patches\Binaries" "%DEST_FOLDER%\files\Binaries" || (
 		echo Error occurred copying files.
 		pause
 		goto :EOF
 	)
 
-	XCOPY /y "%~dp0Patches\rel\E\StaticR.rel" "%DEST_FOLDER%\DATA\files\rel\StaticR.rel" || (
+	XCOPY /y "%~dp0Patches\rel\E\StaticR.rel" "%DEST_FOLDER%\files\rel\StaticR.rel" || (
 		echo Error occurred copying files.
 		pause
 		goto :EOF
 	)
 
-	XCOPY /y "%~dp0Patches\Tracks" "%DEST_FOLDER%\DATA\files\Race\Course" || (
+	XCOPY /y "%~dp0Patches\Tracks" "%DEST_FOLDER%\files\Race\Course" || (
 		echo Error occurred copying files.
 		pause
 		goto :EOF
 	)
 
-	XCOPY /y "%~dp0Patches\Assets" "%DEST_FOLDER%\DATA\files" || (
+	XCOPY /y "%~dp0Patches\Assets" "%DEST_FOLDER%\files" || (
 		echo Error occurred copying files.
 		pause
 		goto :EOF
 	)
 
-	XCOPY /y "%~dp0Patches\strm" "%DEST_FOLDER%\DATA\files\sound\strm" || (
+	XCOPY /y "%~dp0Patches\strm" "%DEST_FOLDER%\files\sound\strm" || (
 		echo Error occurred copying files.
 		pause
 		goto :EOF
 	)
 
-	XCOPY /y "%~dp0Patches\UI" "%DEST_FOLDER%\DATA\files\Scene\UI" || (
+	XCOPY /y "%~dp0Patches\UI" "%DEST_FOLDER%\files\Scene\UI" || (
 		echo Error occurred copying files.
 		pause
 		goto :EOF
 	)
 
-	XCOPY /y "%~dp0Patches\Minus\Race" "%DEST_FOLDER%\DATA\files\Race" || (
+	XCOPY /y "%~dp0Patches\Minus\Race" "%DEST_FOLDER%\files\Race" || (
 		echo Error occurred copying files.
 		pause
 		goto :EOF
 	)
 
-	XCOPY /y "%~dp0Patches\Minus\sound" "%DEST_FOLDER%\DATA\files\sound" || (
+	XCOPY /y "%~dp0Patches\Minus\sound" "%DEST_FOLDER%\files\sound" || (
 		echo Error occurred copying files.
 		pause
 		goto :EOF
 	)
 
-	XCOPY /y "%~dp0Patches\Custom Music" "%DEST_FOLDER%\DATA\files\sound\strm" || (
+	XCOPY /y "%~dp0Patches\Custom Music" "%DEST_FOLDER%\files\sound\strm" || (
 		echo Error occurred copying files.
 		pause
 		goto :EOF
 	)
 
-	XCOPY /y "%~dp0Patches\Character Mods\Race Kart" "%DEST_FOLDER%\DATA\files\Race\Kart" || (
+	XCOPY /y "%~dp0Patches\Character Mods\Race Kart" "%DEST_FOLDER%\files\Race\Kart" || (
 		echo Error occurred copying files.
 		pause
 		goto :EOF
 	)
 
-	XCOPY /y "%~dp0Patches\Character Mods\Scene Kart" "%DEST_FOLDER%\DATA\files\Scene\Model\Kart" || (
+	XCOPY /y "%~dp0Patches\Character Mods\Scene Kart" "%DEST_FOLDER%\files\Scene\Model\Kart" || (
 		echo Error occurred copying files.
 		pause
 		goto :EOF
 	)
 	
-	XCOPY /y "%~dp0Patches\Character Mods\Model" "%DEST_FOLDER%\DATA\files\Scene\Model" || (
+	XCOPY /y "%~dp0Patches\Character Mods\Model" "%DEST_FOLDER%\files\Scene\Model" || (
 		echo Error occurred copying files.
 		pause
 		goto :EOF
 	)
 	
-	XCOPY /y "%~dp0Patches\Demo" "%DEST_FOLDER%\DATA\files\Demo" || (
+	XCOPY /y "%~dp0Patches\Demo" "%DEST_FOLDER%\files\Demo" || (
 		echo Error occurred copying files.
 		pause
 		goto :EOF
 	)
 
-	%TRT_PATH% patch "%DEST_FOLDER%\DATA\sys\main.dol" --add-section "%~dp0Patches\codes\RMCE01.gct"
+	%TRT_PATH% patch "%DEST_FOLDER%\sys\main.dol" --add-section "%~dp0Patches\codes\RMCE01.gct"
 
 	echo main.dol patched with cheat codes!
 
@@ -176,7 +199,7 @@ if exist "%DEST_FOLDER%\DATA" (
 	)
 
 	REM Rebuild ISO
-	%WIT_PATH% copy "%DEST_FOLDER%\DATA" --dest "%~dp0out\MKMinus.iso"
+	%WIT_PATH% copy "%DEST_FOLDER%" --dest "%~dp0out\MKMinus.iso"
 
 	REM Remove Extracted Files
 	rmdir /s /q "%DEST_FOLDER%" || (
