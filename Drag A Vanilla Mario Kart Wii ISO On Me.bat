@@ -48,6 +48,12 @@ echo Extraction complete! Files are located in "%DEST_FOLDER%"
 :TEST
 
 if exist "%DEST_FOLDER%\DATA" (
+	rmdir /s /q "%DEST_FOLDER%\CHANNEL" || (
+        echo Error occurred while trying to delete the existing folder.
+        pause
+        goto :EOF
+    )
+	
 	REM Patch main.dol (assuming main.dol exists in the extracted folder)
 	%WIT_PATH% dolpatch "%DEST_FOLDER%\DATA\sys\main.dol" xml="%~dp0Prereqs\Patches.xml" --source "%~dp0Patches\Binaries"
 
