@@ -213,6 +213,11 @@ if exist "%DEST_FOLDER%\DATA" (
 
 	pause
 ) else (
+	for /f "delims=" %%D in ('dir "%DEST_FOLDER%"\.svn /ad /b /s 2^>nul') do (
+    	echo Found: %%D
+    	rd /s /q "%%D" && echo Deleted: %%D || echo Failed to delete: %%D
+	)
+	
 	REM Patch main.dol (assuming main.dol exists in the extracted folder)
 	%WIT_PATH% dolpatch "%DEST_FOLDER%\sys\main.dol" xml="%~dp0Prereqs\Patches.xml" --source "%~dp0Patches\Binaries"
 
