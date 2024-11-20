@@ -1,7 +1,7 @@
-## Credits go out to
+## Credits Go Out To
 
 - ZPL for Retro Rewind and Custom Tracks
-- KappaUSA for the Custom Character Textures
+- KappASA for the Custom Character Textures
 - Glitch_Wuz_H3R3 for Celebi
 - ALE for Super Sonic
 - Numerosity for Tour Singapore Speedway
