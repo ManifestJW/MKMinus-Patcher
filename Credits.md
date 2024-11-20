@@ -1,18 +1,3 @@
-# MKMinus-Patcher
-Patches Mario Kart Wii with my mod Mario Kart Minus
-
-## Instructions
-Install Git and clone the repo
-
-There is one file you need to install from Google Drive because it's too big to fit on github. Put it inside Patches\Minus\sound
-
-https://drive.google.com/drive/folders/1W7NJLHsEJsWHPLYWZSHmXNmBa1CSoFQp?usp=sharing
-
-Drag And Drop A **Vanilla** Mario Kart Wii iso onto the .bat file. Output ISO will appear in the out folder
-
-## Downloading Releases
-Releases work right out of the box. No need to install the revo_kart.brsar file from Google Drive.
-
 ## Credits Go Out To
 
 - ZPL for Retro Rewind and Custom Tracks
