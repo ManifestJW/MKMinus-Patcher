@@ -16,7 +16,7 @@ Releases work right out of the box. No need to install the revo_kart.brsar file 
 ## Credits Go Out To
 
 - ZPL for Retro Rewind and Custom Tracks
-- KappaUSA for the Custom Character Textures
+- KappaASA for the Custom Character Textures
 - Glitch_Wuz_H3R3 for Celebi
 - ALE for Super Sonic
 - Numerosity for Tour Singapore Speedway
